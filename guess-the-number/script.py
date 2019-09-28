@@ -1,3 +1,5 @@
+# guess-the-number
+
 import random
 
 randomNumber = random.randint(1,21)
@@ -27,7 +29,6 @@ def guess_is_too_low(guessedNumber: int):
 
 def main():
     guessedNumber = int(input("Please enter your guess: "))
-    print(guessedNumber)
 
     if(is_guess_right(guessedNumber)):
         print("You win")

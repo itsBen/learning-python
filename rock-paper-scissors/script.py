@@ -6,59 +6,7 @@
 # paper beats rock
 # scissors beats paper
 
-import sys
-import random
-
-
-class Player:
-
-    wins    = 0
-    losses  = 0
-    choice  = ""
-    name    = ""
-
-    options = ["Rock", "Paper", "Scissors"]
-
-    def __init__(self, name):
-        self.name = name
-
-    def addWin(self):
-        self.wins += 1
-        print("Player: {} won! Now has {} win(s) and {} loss(es)!".format(self.name, self.wins, self.losses))
-
-    def addLoss(self):
-        self.losses += 1
-        print("Player: {} lost! Now has {} win(s) and {} loss(es)!".format(self.name, self.wins, self.losses))
-
-    def make_random_choice(self):
-        choice = random.choice(self.options)
-
-        print("Player: {} chose: {}".format(self.name, choice))
-
-        self.choice = choice
-
-    def choose(self):
-        print("Press R for Rock.")
-        print("Press P for Paper.")
-        print("Press S for Scissors.")
-        print("Press Q to quit.")
-
-        humanInput = input().lower()
-        choice = ""
-
-        if(humanInput == "r"):
-            choice = self.options[0] # returns "Rock"
-        elif(humanInput == "p"):
-            choice = self.options[1] # returns "Paper"
-        elif(humanInput == "s"):
-            choice = self.options[2] # returns "Scissors"
-        elif(humanInput == "q"):
-            sys.exit(0)
-        else:
-            self.choose()
-
-        print("Player: {} chose: {}".format(self.name, choice))
-        self.choice = choice
+from class_player import Player
 
 def main():
 
@@ -80,11 +28,11 @@ def main():
 
         print()
 
-        if(computer.wins == maxWins):
+        if(computer._wins == maxWins):
             winner = computer
             break
 
-        if (human.wins == maxWins):
+        if (human._wins == maxWins):
             winner = human
             break
 

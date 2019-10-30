@@ -12,59 +12,64 @@ def main():
 
     # list rules
 
-    human       = Player("Human")
-    computer    = Player("Computer")
+    human       = Player("Human", True)
+    computer    = Player("Computer", False)
 
     maxWins     = 3
     winner      = Player
 
     print("Playing until the first player has {} wins.".format(maxWins))
 
-    while True:
-        human.choose()
-        computer.make_random_choice()
+    human.choose()
+    computer.choose()
 
-        check_winner(human, computer)
+    # while True:
+    #     human.choose()
+    #     computer.make_random_choice()
 
-        print()
+    #     check_winner(human, computer)
 
-        if(computer._wins == maxWins):
-            winner = computer
-            break
+    #     print()
 
-        if (human._wins == maxWins):
-            winner = human
-            break
+    #     if(computer._wins == maxWins):
+    #         winner = computer
+    #         break
 
-        print("Next round")
+    #     if (human._wins == maxWins):
+    #         winner = human
+    #         break
+
+    #     print("Next round")
 
 
-    print("Player {} won the game with {} wins and {} losses!".format(winner.name, winner.wins, winner.losses))
+    # print("Player {} won the game with {} wins and {} losses!".format(winner.name, winner.wins, winner.losses))
 
 
-def check_winner(human: Player, computer: Player):
-    if(human.choice == computer.choice):
-        print("tie")
-    elif(human.choice == "Rock") and (computer.choice == "Paper"):
-        computer.addWin()
-        human.addLoss()
-    elif(human.choice == "Rock") and (computer.choice == "Scissors"):
-        computer.addLoss()
-        human.addWin()
-    elif(human.choice == "Paper") and (computer.choice == "Scissors"):
-        computer.addWin()
-        human.addLoss()
-    elif(human.choice == "Paper") and (computer.choice == "Rock"):
-        computer.addLoss()
-        human.addWin()
-    elif(human.choice == "Scissors") and (computer.choice == "Rock"):
-        computer.addWin()
-        human.addLoss()
-    elif(human.choice == "Scissors") and (computer.choice == "Paper"):
-        computer.addLoss()
-        human.addWin()
+# def check_winner(human: Player, computer: Player):
+#     if(human.choice == computer.choice):
+#         print("tie")
+#     elif(human.choice == "Rock") and (computer.choice == "Paper"):
+#         computer.addWin()
+#         human.addLoss()
+#     elif(human.choice == "Rock") and (computer.choice == "Scissors"):
+#         computer.addLoss()
+#         human.addWin()
+#     elif(human.choice == "Paper") and (computer.choice == "Scissors"):
+#         computer.addWin()
+#         human.addLoss()
+#     elif(human.choice == "Paper") and (computer.choice == "Rock"):
+#         computer.addLoss()
+#         human.addWin()
+#     elif(human.choice == "Scissors") and (computer.choice == "Rock"):
+#         computer.addWin()
+#         human.addLoss()
+#     elif(human.choice == "Scissors") and (computer.choice == "Paper"):
+#         computer.addLoss()
+#         human.addWin()
 
-    else:
-        print("Unexpected")
+#     else:
+#         print("Unexpected")
+
+
 
 main()

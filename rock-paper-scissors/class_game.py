@@ -1,13 +1,16 @@
-class Game:
+from shared import Moves, Outcome, MOVES_BEATEN_BY
+from class_player import Player
 
-    def __init__(self, number_of_rounds: int, players):
+class Game:
+    def __init__(self, number_of_rounds: int, players: list(Player)):
         self._number_of_rounds   = number_of_rounds
         self._players            = players
 
-    def start(self):
 
+    def start(self):
         for round in range(self._number_of_rounds):
             print(round)
+
 
     def end(self):
         pass
@@ -15,39 +18,24 @@ class Game:
 
 class Round:
 
-    def __init__(self, round_number: int, players):
+    def __init__(self, round_number: int, players: list(Player)):
         self._round_number   = round_number
         self._players        = players
 
-    def start(self):
+        self._start()
+
+
+    def _start(self):
         for player in self._players:
             player.choose()
 
-    def end(self):
+    def _end(self):
         pass
 
-class Rules:
-    def apply(players):
-        if(human.choice == computer.choice):
-            print("tie")
-        elif(human.choice == "Rock") and (computer.choice == "Paper"):
-            computer.addWin()
-            human.addLoss()
-        elif(human.choice == "Rock") and (computer.choice == "Scissors"):
-            computer.addLoss()
-            human.addWin()
-        elif(human.choice == "Paper") and (computer.choice == "Scissors"):
-            computer.addWin()
-            human.addLoss()
-        elif(human.choice == "Paper") and (computer.choice == "Rock"):
-            computer.addLoss()
-            human.addWin()
-        elif(human.choice == "Scissors") and (computer.choice == "Rock"):
-            computer.addWin()
-            human.addLoss()
-        elif(human.choice == "Scissors") and (computer.choice == "Paper"):
-            computer.addLoss()
-            human.addWin()
-
+    def _determine_round_winner(self, player_move: Moves, computer_move: Moves):
+        if computer_move in MOVES_BEATEN_BY[player_move]:
+            return Outcome.WON
+        elif player_move in MOVES_BEATEN_BY[computer_move]:
+            return Outcome.LOST
         else:
-            print("Unexpected")
+            return Outcome.TIE

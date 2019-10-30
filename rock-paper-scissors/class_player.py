@@ -1,15 +1,15 @@
 import random
 import sys
+from shared import Moves
 
 class Player:
 
-    options = ["Rock", "Paper", "Scissors"]
-
     def __init__(self, name: str, isHuman: bool):
         self._name      = name
-        self._isHuman   = False
+        self._isHuman   = isHuman
         self._wins      = None
         self._losses    = None
+
 
     def addWin(self):
         self._wins += 1
@@ -19,11 +19,11 @@ class Player:
         self._losses += 1
         print("Player: {} lost! Now has {} win(s) and {} loss(es)!".format(self._name, self._wins, self._losses))
 
+
     def _makeRandomChoice(self):
-        return random.choice(self.options)
+        return random.choice(list(Moves))
 
     def choose(self):
-        choice = None
 
         if(self._isHuman == True):
             print("Press R for Rock.")
@@ -31,20 +31,19 @@ class Player:
             print("Press S for Scissors.")
             print("Press Q to quit.")
 
-            humanInput = input().lower()
+            humanInput = input()
 
             if(humanInput == "r"):
-                choice = self.options[0] # returns "Rock"
+                self.choice = Moves.ROCK
             elif(humanInput == "p"):
-                choice = self.options[1] # returns "Paper"
+                self.choice = Moves.PAPER
             elif(humanInput == "s"):
-                choice = self.options[2] # returns "Scissors"
+                self.choice = Moves.SCISSOR
             elif(humanInput == "q"):
                 sys.exit(0)
             else:
                 self.choose()
         else:
-            choice = self._makeRandomChoice()
+            self.choice = self._makeRandomChoice()
 
-        print("Player: {} chose: {}".format(self._name, choice))
-        self.choice = choice
+        print("Player: {} chose: {}".format(self._name, self.choice))

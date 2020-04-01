@@ -5,6 +5,9 @@ from shared import Moves
 class Player:
 
     def __init__(self, name: str, isHuman: bool):
+        # public variables
+
+        # private variables
         self._name      = name
         self._isHuman   = isHuman
         self._wins      = None

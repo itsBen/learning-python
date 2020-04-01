@@ -7,21 +7,25 @@
 # scissors beats paper
 
 from class_player import Player
+from class_game import Game
 
 def main():
 
     # list rules
 
-    human       = Player("Human", True)
+    human       = Player("Human", False)
     computer    = Player("Computer", False)
 
-    maxWins     = 3
-    winner      = Player
+    game        = Game(3)
+    game.addPlayer(human)
+    game.addPlayer(computer)
+    game.start()
 
-    print("Playing until the first player has {} wins.".format(maxWins))
 
-    human.choose()
-    computer.choose()
+
+
+    #human.choose()
+    #computer.choose()
 
     # while True:
     #     human.choose()
